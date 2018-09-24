@@ -10,6 +10,7 @@ export default class Item extends PureComponent {
     this.renameItem = this.renameItem.bind(this);
     this.deleteItem = this.deleteItem.bind(this);
     this.createNewItem = this.createNewItem.bind(this);
+    this.markAsComplete = this.markAsComplete.bind(this);
     this.state = {
       text: ''
     }
@@ -30,7 +31,7 @@ export default class Item extends PureComponent {
   deleteItem(itemId) {
     this.setState({ loading: true });
     const loadedBucket = this.props.data.loadedBucket;
-    const url = `${process.env.REACT_APP_BASE_URL}/bucketlists/${loadedBucket._id}/items/${itemId}`;
+    const url = `${window.location.href}api/v1/bucketlists/${loadedBucket._id}/items/${itemId}`;
     fetch(url, {
       method: 'DELETE',
       headers: {
@@ -51,7 +52,7 @@ export default class Item extends PureComponent {
   createNewItem() {
     if(this.state.text === '') return;
     const bucketId = this.props.data.loadedBucket._id;
-    const url = `${process.env.REACT_APP_BASE_URL}/bucketlists/${bucketId}/items/`;
+    const url = `${window.location.href}api/v1/bucketlists/${bucketId}/items/`;
     const name = { name: this.state.text };
     fetch(url, {
       method: 'POST',
@@ -77,7 +78,7 @@ export default class Item extends PureComponent {
 
   markAsComplete(name, id){
     if(this.state.loading) return;
-    const url = `${process.env.REACT_APP_BASE_URL}/bucketlists/${this.props.data.loadedBucket._id}/items/${id}`;
+    const url = `${window.location.href}api/v1/bucketlists/${this.props.data.loadedBucket._id}/items/${id}`;
     this.setState({ loading: true });
     fetch(url, {
       method: 'PUT',
@@ -106,9 +107,9 @@ export default class Item extends PureComponent {
     const renameItem = () => this.renameItem(props.name, props.id);
     return (
       <div>
-        <button onClick={onClick} title='Click to mark as COMPLETED' className={props.status && 'green'}>
+        <button onClick={onClick} title='Click to mark as COMPLETED' className={props.status ? 'green' : ''}>
           {props.name}
-          <i className='material-icons' onClick={renameItem}>
+          <i className='material-icons'>
             {props.status ? 'assignment_turned_in' : 'assignment'}
         </i>
         </button>

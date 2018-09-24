@@ -3,7 +3,7 @@
 ## Intro
 Toad is on a rampage and he is causing a nuisance everywhere. It is up to Mario to call him to order. Can you restore order in record time? Are you up for a challenge?  
 
-Click [__HERE__](https://bucket.herokuapp.com) to use the Bucket App.
+Click [__HERE__](https://bocket.herokuapp.com) to use the Bucket App.
 
 ## How To Use
 Open the terminal in the project folder and run:

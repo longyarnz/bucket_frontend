@@ -55,7 +55,7 @@ export default class App extends Component {
   }
 
   Logout() {
-    const url = `${process.env.REACT_APP_BASE_URL}/auth/logout`;
+    const url = `${window.location.href}api/v1/auth/logout`;
     fetch(url, {
       method: 'GET',
       headers: {

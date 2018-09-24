@@ -69,7 +69,7 @@ export default class AccessTab extends PureComponent {
       username: e.target[0].value,
       password: e.target[1].value
     }
-    const url = `${process.env.REACT_APP_BASE_URL}/auth/${this.state.endpoint}`
+    const url = `${window.location.href}api/v1/auth/${this.state.endpoint}`
     fetch(url, {
       method: 'POST',
       body: JSON.stringify(data),

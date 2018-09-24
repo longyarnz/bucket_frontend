@@ -24,7 +24,7 @@ export default class BucketList extends PureComponent {
 
   componentDidMount(endpoint = '/', responseHandler) {
     if(this.props.data.searching) return;
-    const url = `${process.env.REACT_APP_BASE_URL}/bucketlists${endpoint}`;
+    const url = `${window.location.href}api/v1/bucketlists${endpoint}`;
     this.setState({ loading: true });
     fetch(url, {
       method: 'GET',
@@ -76,7 +76,7 @@ export default class BucketList extends PureComponent {
   }
 
   deleteBucket(bucketId) {
-    const url = `${process.env.REACT_APP_BASE_URL}/bucketlists/${bucketId}`;
+    const url = `${window.location.href}api/v1/bucketlists/${bucketId}`;
     this.setState({ loading: true });
     fetch(url, {
       method: 'DELETE',
@@ -95,7 +95,7 @@ export default class BucketList extends PureComponent {
     if (this.state.text === '') return;
     this.setState({ loading: true });
     const name = { name: this.state.text };
-    const url = `${process.env.REACT_APP_BASE_URL}/bucketlists${this.props.data.searching ? `?q=${name.name}` : ''}`;
+    const url = `${window.location.href}api/v1/bucketlists${this.props.data.searching ? `?q=${name.name}` : ''}`;
     fetch(url, {
       method: this.props.data.searching ? 'GET' : 'POST',
       body: this.props.data.searching ? null : JSON.stringify(name),

@@ -13,7 +13,7 @@ export default class Renamer extends PureComponent {
   }
 
   renameBucket() {
-    const url = `${process.env.REACT_APP_BASE_URL}/bucketlists/${this.props.data.renameId}`;
+    const url = `${window.location.href}api/v1/bucketlists/${this.props.data.renameId}`;
     this.setState({ loading: true });
     fetch(url, {
       method: 'PUT',
@@ -34,7 +34,7 @@ export default class Renamer extends PureComponent {
   }
 
   renameItem() {
-    const url = `${process.env.REACT_APP_BASE_URL}/bucketlists/${this.props.data.loadedBucket._id}/items/${this.props.data.renameId}`;
+    const url = `${window.location.href}api/v1/bucketlists/${this.props.data.loadedBucket._id}/items/${this.props.data.renameId}`;
     this.setState({ loading: true });
     fetch(url, {
       method: 'PUT',
